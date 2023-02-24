@@ -31,11 +31,11 @@ void Game::draw() {
             this->redGhost.ghost.y--;
             break;
     }
-    count =(count+1)%(512);
+    this->count =(this->count +1)%(512);
 
     // ici on change entre les 2 sprites sources pour une jolie animation.
     SDL_Rect ghost_in2 = *ghost_in;
-    if ((count/4)%2)
+    if ((this->count/4)%2)
         ghost_in2.x += 17;
 
     // couleur transparente
