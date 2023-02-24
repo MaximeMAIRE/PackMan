@@ -16,7 +16,7 @@ class Game {
 public:
     Map mapGame;
     Ghost redGhost;
-    int count;
+    int count=0;
     Game(){
 
         this->mapGame=Map();
@@ -24,7 +24,7 @@ public:
     }
 
 
-             void draw();
+    void draw();
 };
 
 

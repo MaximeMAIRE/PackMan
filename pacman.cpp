@@ -7,15 +7,13 @@
 #include "Game.h"
 int main(int argc, char** argv)
 {
-    Game packManGame;
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
     {
-		std::cerr <<"Echec de l'initialisation de la SDL "<<SDL_GetError() << std::endl;
 		return 1;
     }
 
+	Game packManGame;
     packManGame=Game{};
-
     // BOUCLE PRINCIPALE
 	bool quit = false;
 	while (!quit)
@@ -31,7 +29,6 @@ int main(int argc, char** argv)
 			default: break;
 			}
 		}
-
         // Gestion du clavier        
         int nbk;
         const Uint8* keys = SDL_GetKeyboardState(&nbk);
@@ -41,7 +38,6 @@ int main(int argc, char** argv)
             puts("LEFT");
         if (keys[SDL_SCANCODE_RIGHT])
             puts("RIGHT");
-
         // AFFICHAGE
 		packManGame.draw();
 		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);

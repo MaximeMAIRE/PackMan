@@ -4,11 +4,10 @@
 
 #include "Game.h"
 
-void Game::draw() {
-
-
+void Game::draw() 
+{
     SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
-    SDL_BlitScaled(this->mapGame.plancheSprites, &this->mapGame.src_bg, this->mapGame.win_surf, &this->mapGame.bg);
+    SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.src_bg), this->mapGame.win_surf, &(this->mapGame.bg));
 
     // petit truc pour faire tourner le fantome
     SDL_Rect* ghost_in = nullptr;
@@ -37,10 +36,8 @@ void Game::draw() {
     SDL_Rect ghost_in2 = *ghost_in;
     if ((this->count/4)%2)
         ghost_in2.x += 17;
-
     // couleur transparente
     SDL_SetColorKey(this->mapGame.plancheSprites, true, 0);
     // copie du sprite zoomé
-    SDL_BlitScaled(this->mapGame.plancheSprites, &ghost_in2, this->mapGame.win_surf, &this->redGhost.ghost);
-
+    SDL_BlitScaled(this->mapGame.plancheSprites, &ghost_in2, this->mapGame.win_surf, &(this->redGhost.ghost));
 }
