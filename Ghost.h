@@ -37,7 +37,7 @@ public:
                 this->ghost_l = { 37,123, 16,16 };
                 this->ghost_d = { 105,123, 16,16 };
                 this->ghost_u = { 71,123, 16,16 };
-                this->ghost = { 34,34, 32,32 };
+                this->ghost = { 32,32, 32,32 };
                 break;
             }
             case 2:

@@ -6,12 +6,12 @@
 
 void Game::draw() 
 {
-    int count2 = 1;
     SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
     SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.src_bg), this->mapGame.win_surf, &(this->mapGame.bg));
 
     // petit truc pour faire tourner le fantome
     SDL_Rect* ghost_r_in = nullptr;
+    /*
     switch (count/128)
     {
         case 0:
@@ -31,8 +31,12 @@ void Game::draw()
             this->redGhost.ghost.y--;
             break;
     }
-    this->count =(this->count +1)%(512);
+    */
+    ghost_r_in = &(this->redGhost.ghost_r);
+ /* 
 
+    this->count =(this->count +1)%(512);
+*/
     // ici on change entre les 2 sprites sources pour une jolie animation.
     SDL_Rect ghost_r_in2 = *ghost_r_in;
     if ((this->count/4)%2)
@@ -41,6 +45,5 @@ void Game::draw()
     SDL_SetColorKey(this->mapGame.plancheSprites, true, 0);
     // copie du sprite zoomé
     SDL_BlitScaled(this->mapGame.plancheSprites, &ghost_r_in2, this->mapGame.win_surf, &(this->redGhost.ghost));
-
 
 }
