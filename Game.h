@@ -16,11 +16,17 @@ class Game {
 public:
     Map mapGame;
     Ghost redGhost;
+    Ghost beigeGhost;
+    Ghost blueGhost;
+    Ghost orangeGhost;
     int count=0;
-    Game(){
-
+    Game()
+    {
         this->mapGame=Map();
-        this->redGhost=Ghost();
+        this->redGhost=Ghost(1);
+        this->beigeGhost=Ghost(2);
+        this->blueGhost=Ghost(3);
+        this->orangeGhost=Ghost(4);
     }
 
 
