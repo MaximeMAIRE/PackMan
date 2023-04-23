@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/PacMan.dir/Pack.cpp.o CMakeFiles/PacMan.dir/Map.cpp.o CMakeFiles/PacMan.dir/Person.cpp.o CMakeFiles/PacMan.dir/Game.cpp.o CMakeFiles/PacMan.dir/Ghost.cpp.o CMakeFiles/PacMan.dir/pacman.cpp.o -o PacMan  -lSDL2 

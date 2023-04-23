@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Ghost.h"
 #include "Game.h"
+
 int main(int argc, char** argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
@@ -19,6 +20,11 @@ int main(int argc, char** argv)
 	bool quit = false;
 	while (!quit)
 	{
+		if (packManGame.mapGame.test_fin()==1)
+		{
+			std::cout << "Victoire" << std::endl;
+			break;
+		}
 		SDL_Event event;
 		while (!quit && SDL_PollEvent(&event))
 		{
@@ -33,14 +39,6 @@ int main(int argc, char** argv)
         // Gestion du clavier        
         int nbk;
         const Uint8* keys = SDL_GetKeyboardState(&nbk);
-
-		int x = packManGame.redGhost.ghost.x;
-		int y = packManGame.redGhost.ghost.y;
-
-		float ax = packManGame.redGhost.ghost.x/32.0;
-		float ay = packManGame.redGhost.ghost.y/32.0;
-		int iax = packManGame.redGhost.ghost.x/32;
-		int iay = packManGame.redGhost.ghost.y/32;
 
         if (keys[SDL_SCANCODE_ESCAPE])
             quit = true;
@@ -65,106 +63,14 @@ int main(int argc, char** argv)
 			cache = 4;
 		}
 
-		if(x%32 == 0 && y%32==0)
-		{
-			switch (cache)
-			{
-			case 1:
-				if(packManGame.mapGame.tab[iax-1][iay] != -1)	
-				{
-					deplace = cache;
-				}
-				break;
-			case 2:
-				if(packManGame.mapGame.tab[iax+1][iay] != -1)
-				{
-					deplace = cache;
-				}
-				break;
-			case 3:
-				if(packManGame.mapGame.tab[iax][iay+1] != -1)
-				{
-					deplace = cache;
-				}
-				break;
-			case 4:
-				if(packManGame.mapGame.tab[iax][iay-1] != -1)
-				{
-					deplace = cache;
-				}
-				break;
-			default:
-				break;
-			}
-		}
+		packManGame.pacman.mouvment(cache, packManGame.mapGame);
+		packManGame.redGhost.mouvement(packManGame.mapGame);
+		packManGame.beigeGhost.mouvement(packManGame.mapGame);
+		packManGame.blueGhost.mouvement(packManGame.mapGame);
+		packManGame.orangeGhost.mouvement(packManGame.mapGame);
 
-
-		switch (deplace)
-		{
-		case 1:
-			std::cout << x << y << std::endl;
-			if(x%32 == 0 && y%32==0)
-			{
-				if(packManGame.mapGame.tab[iax-1][iay] != -1)	
-				{
-					packManGame.redGhost.ghost.x--;
-				}
-			}
-			else
-			{
-				packManGame.redGhost.ghost.x--;
-			}
-			break;
-		case 2:
-			std::cout << x << y << std::endl;
-			if(x%32 == 0 && y%32==0)
-			{
-				if(packManGame.mapGame.tab[iax+1][iay] != -1)
-				{
-					packManGame.redGhost.ghost.x++;
-				}
-			}
-			else
-			{
-				packManGame.redGhost.ghost.x++;
-			}
-			break;
-		case 3:
-			std::cout << x << y << std::endl;
-			if(x%32 == 0 && y%32==0)
-			{
-				if(packManGame.mapGame.tab[iax][iay+1] != -1)
-				{
-					packManGame.redGhost.ghost.y++;
-				}
-			}
-			else 
-			{
-				packManGame.redGhost.ghost.y++;
-			}
-			break;
-		case 4:
-			std::cout << x << y << std::endl;
-			if(x%32 == 0 && y%32==0)
-			{
-				if(packManGame.mapGame.tab[iax][iay-1] != -1)
-				{
-					packManGame.redGhost.ghost.y--;
-				}	
-			}
-				
-			else
-			{
-				packManGame.redGhost.ghost.y--;
-			}
-				
-			break;
-		default:
-			break;
-		}
-
-        // AFFICHAGE
 		packManGame.draw();
+		packManGame.count++;
 		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
         // LIMITE A 60 FPS
 		SDL_Delay(16); // utiliser SDL_GetTicks64() pour plus de precisions

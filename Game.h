@@ -9,6 +9,7 @@
 #include <iostream>
 #include "Map.h"
 #include "Ghost.h"
+#include "Pack.h"
 
 
 class Game {
@@ -19,7 +20,9 @@ public:
     Ghost beigeGhost;
     Ghost blueGhost;
     Ghost orangeGhost;
+    Pack pacman;
     int count=0;
+
     Game()
     {
         this->mapGame=Map();
@@ -27,6 +30,7 @@ public:
         this->beigeGhost=Ghost(2);
         this->blueGhost=Ghost(3);
         this->orangeGhost=Ghost(4);
+        this->pacman=Pack();
     }
 
 
