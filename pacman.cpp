@@ -18,13 +18,10 @@ int main(int argc, char** argv)
     packManGame=Game{};
     // BOUCLE PRINCIPALE
 	bool quit = false;
+	bool happy_end = 0;
+	bool bad_ending = 0;
 	while (!quit)
 	{
-		if (packManGame.mapGame.test_fin()==1)
-		{
-			std::cout << "Victoire" << std::endl;
-			break;
-		}
 		SDL_Event event;
 		while (!quit && SDL_PollEvent(&event))
 		{
@@ -36,17 +33,7 @@ int main(int argc, char** argv)
 			default: break;
 			}
 		}
-		int x = packManGame.pacman.pacman_pos.x;
-		int y = packManGame.pacman.pacman_pos.y;
-		if(x%32 > 15)
-			x = (x/32) + 1;
-		else
-			x = (x/32);
-		if(y%32 > 15)
-			y = (y/32) + 1;
-		else
-			y = (y/32);
-		packManGame.mapGame.passage(y,x);
+		
         // Gestion du clavier        
         int nbk;
         const Uint8* keys = SDL_GetKeyboardState(&nbk);
@@ -73,7 +60,7 @@ int main(int argc, char** argv)
 			puts("UP");
 			cache = 4;
 		}
-
+		packManGame.passage();
 		packManGame.pacman.mouvment(cache, packManGame.mapGame);
 		packManGame.redGhost.mouvement(packManGame.mapGame);
 		packManGame.beigeGhost.mouvement(packManGame.mapGame);
@@ -82,9 +69,28 @@ int main(int argc, char** argv)
 
 		packManGame.draw();
 		packManGame.count++;
+		if (packManGame.mapGame.test_fin()==1)
+		{
+			std::cout << "Victoire" << std::endl;
+			packManGame.draw_end();
+			happy_end = true;
+			quit = true;
+		}
 		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
         // LIMITE A 60 FPS
 		SDL_Delay(16); // utiliser SDL_GetTicks64() pour plus de precisions
+	}
+	packManGame.count = 0;
+	while(happy_end)
+	{
+		packManGame.draw_end();
+		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
+		SDL_Delay(16);
+		packManGame.count++;
+		if (packManGame.count == 180)
+		{
+			happy_end = false;
+		}
 	}
     SDL_Quit(); // ON SORT
     return 0;

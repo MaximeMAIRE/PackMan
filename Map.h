@@ -18,7 +18,10 @@ public:
     SDL_Window* pWindow = nullptr;
     SDL_Surface* win_surf = nullptr;
     SDL_Surface* plancheSprites = nullptr;
-    SDL_Rect src_bg = { 200,3, 168,216 }; // x,y, w,h (0,0) en haut a gauche
+
+    SDL_Rect src_bg = { 201,4, 168,216 }; // x,y, w,h (0,0) en haut a gauche
+    SDL_Rect src_bg2 = { 370,4, 168,216 };
+    SDL_Rect src_bg3 = { 541,4, 168,216};
     SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
 
     //std::vector <std::vector <int>> tab = {}; //21*27
@@ -63,7 +66,6 @@ public:
     }
 
     int test_fin();
-    void passage(int x, int y);
 
 };
 

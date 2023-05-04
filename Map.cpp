@@ -19,12 +19,5 @@ int Map::test_fin()
     return 1;
 }
 
-void Map::passage(int x, int y)
-{
-    auto it = this->tab.begin() + x;
-    auto it2 = (*it).begin() + y;
-    (*it).at(y) = 0;
-}
-
 
 #include "Map.h"

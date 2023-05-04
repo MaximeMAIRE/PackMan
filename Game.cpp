@@ -1,7 +1,7 @@
 //
 // Created by amadou on 24/02/23.
 //
-
+#include <unistd.h>
 #include "Game.h"
 
 void Game::draw() 
@@ -98,8 +98,45 @@ void Game::draw()
     SDL_BlitScaled(this->mapGame.plancheSprites, tpacman, this->mapGame.win_surf, &(this->pacman.pacman_pos));
     SDL_BlitScaled(this->mapGame.plancheSprites, &tRedGhost2, this->mapGame.win_surf, &(this->redGhost.ghost));
     SDL_BlitScaled(this->mapGame.plancheSprites, &tbeigeGhost2, this->mapGame.win_surf, &(this->beigeGhost.ghost));
+   // SDL_BlitScaled(this->mapGame.plancheSprites, &tbeigeGhost2, this->mapGame.win_surf, &(this->beigeGhost.ghost));
+
+}
+
+void Game::passage()
+{
+    int y = this->pacman.pacman_pos.x;
+    int x = this->pacman.pacman_pos.y;
+    if (x%32 > 15)
+        x = (x/32) + 1;
+    else
+        x = (x/32);
+    if (y%32 > 15)
+        y = (y/32) + 1;
+    else
+        y = (y/32);
+
+    auto it = this->mapGame.tab.begin() + x;
+    auto it2 = (*it).begin() + y;
+    (*it).at(y) = 0;
+}
 
 
+void Game::draw_end()
+{   
+    SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
+    int x = this->count/20;
+    if (x%2 == 0)
+    {
+        SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.src_bg2), this->mapGame.win_surf, &(this->mapGame.bg));
+    } 
+    else
+    {
+        SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.src_bg3), this->mapGame.win_surf, &(this->mapGame.bg));
+    }
+    SDL_SetColorKey(this->mapGame.plancheSprites, true, 0);
 
+    SDL_Rect* tpacman = &(this->pacman.pacman_n);
 
+    SDL_BlitScaled(this->mapGame.plancheSprites, tpacman, this->mapGame.win_surf, &(this->pacman.pacman_pos));
+    // petit truc pour faire tourner le fantome
 }

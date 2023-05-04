@@ -35,6 +35,8 @@ public:
 
 
     void draw();
+    void draw_end();
+    void passage();
 };
 
 
