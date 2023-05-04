@@ -21,12 +21,9 @@ int Map::test_fin()
 
 void Map::passage(int x, int y)
 {
-    std::cout << "supprimer x :" << x << "et y: " << y << std::endl;
     auto it = this->tab.begin() + x;
     auto it2 = (*it).begin() + y;
     (*it).at(y) = 0;
-    std::cout << "SALUT JE SUIS LA POUR SAVOIR SI CA MARCHE " << (*it2) << std::endl;
-    
 }
 
 
