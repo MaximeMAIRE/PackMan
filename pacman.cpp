@@ -36,6 +36,17 @@ int main(int argc, char** argv)
 			default: break;
 			}
 		}
+		int x = packManGame.pacman.pacman_pos.x;
+		int y = packManGame.pacman.pacman_pos.y;
+		if(x%32 > 15)
+			x = (x/32) + 1;
+		else
+			x = (x/32);
+		if(y%32 > 15)
+			y = (y/32) + 1;
+		else
+			y = (y/32);
+		packManGame.mapGame.passage(y,x);
         // Gestion du clavier        
         int nbk;
         const Uint8* keys = SDL_GetKeyboardState(&nbk);

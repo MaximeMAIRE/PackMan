@@ -11,11 +11,15 @@ void Pack::mouvment(int cache, Map map)
     int iax = this->pacman_pos.x/32;
     int iay = this->pacman_pos.y/32;
 
-    for(int i=0;i<27;i++)
+    auto iter = map.tab.begin();
+    for(; iter != map.tab.end();iter++)
     {
-        for(int j=0; j< 21; j++)
+        for(auto iter2 = (*iter).begin();iter2 != (*iter).end();iter2++)
         {
-            std::cout << map.tab[i][j] << " ";
+            if ((*iter2) == -1)
+                std::cout << (*iter2);
+            else
+                std::cout << (*iter2) << " ";
         }
         std::cout << std::endl;
     }
@@ -23,7 +27,6 @@ void Pack::mouvment(int cache, Map map)
 
     if(x%32 == 0 && y%32==0)
     {
-        map.passage(iay,iax);
         switch (cache)
         {
         case 1:

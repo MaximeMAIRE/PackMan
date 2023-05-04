@@ -5,11 +5,12 @@
 
 int Map::test_fin()
 {
-    for (int i=0;i<27;i++)
+    auto iter = this->tab.begin();
+    for(; iter != this->tab.end();iter++)
     {
-        for(int j=0;j<21;j++)
+        for(auto iter2 = (*iter).begin();iter2 != (*iter).end();iter2++)
         {
-            if ((this->tab[i][j] == 1) || (this->tab[i][j] == 2) || (this->tab[i][j] == 3))
+            if( ((*iter2) == 1) || ((*iter2) == 2) || ((*iter2) == 3))
             {
                 return 0;
             }
@@ -21,7 +22,11 @@ int Map::test_fin()
 void Map::passage(int x, int y)
 {
     std::cout << "supprimer x :" << x << "et y: " << y << std::endl;
-    this->tab.at()=0;
+    auto it = this->tab.begin() + x;
+    auto it2 = (*it).begin() + y;
+    (*it).at(y) = 0;
+    std::cout << "SALUT JE SUIS LA POUR SAVOIR SI CA MARCHE " << (*it2) << std::endl;
+    
 }
 
 

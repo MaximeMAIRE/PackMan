@@ -11,6 +11,9 @@
 
 class Map {
 
+private:
+    friend class Person;
+
 public:
     SDL_Window* pWindow = nullptr;
     SDL_Surface* win_surf = nullptr;

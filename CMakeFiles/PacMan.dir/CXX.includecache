@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.cpp
+Map.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
+Map.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
+
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
 SDL.h
 -
@@ -13,22 +19,6 @@ iostream
 -
 vector
 -
-
-/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.cpp
-Pack.h
-/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.h
-
-/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.h
-SDL.h
--
-iostream
--
-Person.h
-/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Person.h
-
-/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Person.h
-Map.h
-/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
 
 /usr/include/SDL2/SDL.h
 SDL_main.h
