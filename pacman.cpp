@@ -19,7 +19,8 @@ int main(int argc, char** argv)
     // BOUCLE PRINCIPALE
 	bool quit = false;
 	bool happy_end = 0;
-	bool bad_ending = 0;
+	bool sad_ending = 0;
+
 	while (!quit)
 	{
 		SDL_Event event;
@@ -75,6 +76,7 @@ int main(int argc, char** argv)
 			happy_end = true;
 			quit = true;
 		}
+		//else sad_ending
 		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
         // LIMITE A 60 FPS
 		SDL_Delay(16); // utiliser SDL_GetTicks64() pour plus de precisions
@@ -90,6 +92,10 @@ int main(int argc, char** argv)
 		{
 			happy_end = false;
 		}
+	}
+	while(sad_ending)
+	{
+		packManGame.draw_sad_ending();
 	}
     SDL_Quit(); // ON SORT
     return 0;

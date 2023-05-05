@@ -36,6 +36,7 @@ public:
 
     void draw();
     void draw_happy_end();
+    void draw_sad_ending();
     void passage();
 };
 

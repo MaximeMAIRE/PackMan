@@ -24,7 +24,7 @@ public:
 
     Ghost()
     {
-        this->ghost_r={ 3,123, 16,16 }; //123:rouge; 141:beige; 159:cyan; 177:orange;
+        this->ghost_r= { 3,123, 16,16 }; //123:rouge; 141:beige; 159:cyan; 177:orange;
         this->ghost_l = { 37,123, 16,16 };
         this->ghost_d = { 105,123, 16,16 };
         this->ghost_u = { 71,123, 16,16 };
@@ -40,7 +40,7 @@ public:
                 this->ghost_l = { 37,123, 16,16 };
                 this->ghost_d = { 105,123, 16,16 };
                 this->ghost_u = { 71,123, 16,16 };
-                this->ghost = { 64,64, 32,32 };
+                this->ghost = { 32,32, 32,32 };
                 break;
             }
             case 2:

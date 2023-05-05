@@ -16,6 +16,20 @@ void Ghost::mouvement(Map map)
     int iay = this->ghost.y/32;
 
     int loop = 1;
+/*
+    if((x%32 == 0) && (y%32 == 0))
+    {
+        if (map.tab[iay][iax-1] == -1)
+        {
+            //si il va a droite ne peux pas allé a gauche, sinon gauche est autorisé
+        }
+        if (map.tab[iay][iax+1] == -1)
+        {
+            //si il va a gauche ne peux pas allé a doite, sinon droite est autorisé
+        }
+
+    }*/
+
 
     if((x%32 == 0) && (y%32 == 0))
     {
