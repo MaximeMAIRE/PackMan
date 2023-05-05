@@ -17,12 +17,18 @@ SDL.h
 -
 iostream
 -
+stdlib.h
+-
 Map.h
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
 Ghost.h
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Ghost.h
 Pack.h
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.h
+
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Ghost.cpp
+Ghost.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Ghost.h
 
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Ghost.h
 SDL.h
@@ -34,6 +40,12 @@ random
 Person.h
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Person.h
 
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.cpp
+Map.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
+Map.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
+
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Map.h
 SDL.h
 -
@@ -42,11 +54,19 @@ iostream
 vector
 -
 
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.cpp
+Pack.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.h
+
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Pack.h
 SDL.h
 -
 iostream
 -
+Person.h
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Person.h
+
+/adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Person.cpp
 Person.h
 /adhome/m/ma/maximemaire/m1s2/prog_avancee/projet/pacman/Person.h
 

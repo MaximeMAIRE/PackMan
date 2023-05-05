@@ -62,6 +62,7 @@ int main(int argc, char** argv)
 			cache = 4;
 		}
 		packManGame.passage();
+
 		packManGame.pacman.mouvment(cache, packManGame.mapGame);
 		packManGame.redGhost.mouvement(packManGame.mapGame);
 		packManGame.beigeGhost.mouvement(packManGame.mapGame);
@@ -70,16 +71,24 @@ int main(int argc, char** argv)
 
 		packManGame.draw();
 		packManGame.count++;
-		if (packManGame.mapGame.test_fin()==1)
-		{
-			std::cout << "Victoire" << std::endl;
-			happy_end = true;
-			quit = true;
-		}
+
 		//else sad_ending
 		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
         // LIMITE A 60 FPS
 		SDL_Delay(16); // utiliser SDL_GetTicks64() pour plus de precisions
+
+		if(packManGame.ghost_hurt()== 1)
+		{
+			std::cout << "Lose" << std::endl;
+			sad_ending = true;
+			break;
+		}
+		if (packManGame.mapGame.test_fin()==1)
+		{
+			std::cout << "Win" << std::endl;
+			happy_end = true;
+			quit = true;
+		}
 	}
 	packManGame.count = 0;
 	while(happy_end)
@@ -96,6 +105,7 @@ int main(int argc, char** argv)
 	while(sad_ending)
 	{
 		packManGame.draw_sad_ending();
+		sad_ending = 0;
 	}
     SDL_Quit(); // ON SORT
     return 0;

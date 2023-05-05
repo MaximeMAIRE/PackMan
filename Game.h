@@ -7,6 +7,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <stdlib.h>
 #include "Map.h"
 #include "Ghost.h"
 #include "Pack.h"
@@ -38,6 +39,7 @@ public:
     void draw_happy_end();
     void draw_sad_ending();
     void passage();
+    int ghost_hurt();
 };
 
 

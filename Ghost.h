@@ -21,6 +21,8 @@ public:
     SDL_Rect ghost ;
 
     int mv = 0 ;
+    int nb_tab_ok =0;
+    std::vector<int> tab_ok {0, 0, 0, 0};
 
     Ghost()
     {
@@ -73,6 +75,7 @@ public:
         }
     }
     void mouvement(Map map);
+    void direction_possible(Map map);
 };
 
 
