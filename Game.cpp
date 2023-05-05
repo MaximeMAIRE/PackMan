@@ -9,7 +9,25 @@ void Game::draw()
     SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
     SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.src_bg), this->mapGame.win_surf, &(this->mapGame.bg));
 
-    // petit truc pour faire tourner le fantome
+
+    auto iter = mapGame.tab.begin();
+    for(int i = 0; iter != mapGame.tab.end();iter++)
+    {
+        int j = 0;
+        for(auto iter2 = (*iter).begin();iter2 != (*iter).end();iter2++)
+        {
+            if((*iter2) == 0)
+            {
+                SDL_Rect na = { j*32, i*32 ,32,32};
+                SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.void_src), this->mapGame.win_surf, &na);
+            }
+            j++;
+        }
+        i++;
+    }
+
+
+
     SDL_Rect* tpacman = nullptr;
    
     switch (this->pacman.mv)
@@ -95,6 +113,7 @@ void Game::draw()
     // couleur transparente
     SDL_SetColorKey(this->mapGame.plancheSprites, true, 0);
     // copie du sprite zoomé
+
     SDL_BlitScaled(this->mapGame.plancheSprites, tpacman, this->mapGame.win_surf, &(this->pacman.pacman_pos));
     SDL_BlitScaled(this->mapGame.plancheSprites, &tRedGhost2, this->mapGame.win_surf, &(this->redGhost.ghost));
     SDL_BlitScaled(this->mapGame.plancheSprites, &tbeigeGhost2, this->mapGame.win_surf, &(this->beigeGhost.ghost));
@@ -121,7 +140,7 @@ void Game::passage()
 }
 
 
-void Game::draw_end()
+void Game::draw_happy_end()
 {   
     SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
     int x = this->count/20;

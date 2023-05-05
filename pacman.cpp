@@ -72,7 +72,6 @@ int main(int argc, char** argv)
 		if (packManGame.mapGame.test_fin()==1)
 		{
 			std::cout << "Victoire" << std::endl;
-			packManGame.draw_end();
 			happy_end = true;
 			quit = true;
 		}
@@ -83,7 +82,7 @@ int main(int argc, char** argv)
 	packManGame.count = 0;
 	while(happy_end)
 	{
-		packManGame.draw_end();
+		packManGame.draw_happy_end();
 		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
 		SDL_Delay(16);
 		packManGame.count++;

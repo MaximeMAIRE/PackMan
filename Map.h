@@ -23,6 +23,7 @@ public:
     SDL_Rect src_bg2 = { 370,4, 168,216 };
     SDL_Rect src_bg3 = { 541,4, 168,216};
     SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
+    SDL_Rect void_src = {600,300, 15,15 };
 
     //std::vector <std::vector <int>> tab = {}; //21*27
     //utiliser std::vector pour le tableau
