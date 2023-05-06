@@ -62,8 +62,7 @@ class Pack : public Person {
          * @brief Implementation of Pacman's movement.
          * 
          * Moves Pacman on the game board according to the current direction and the 
-         * corresponding sprite position. Also handles Pacman's interaction with the 
-         * walls and the dots on the game board.
+         * position. Also handles Pacman's interaction with the walls.
          * 
          * @param cache The cached movement input from the user.
          * @param map The game map containing the walls and the dots.
