@@ -1,5 +1,6 @@
-//
-// Created by amadou on 24/02/23.
-//
+#ifndef PACMAN_PERSON_C
+#define PACMAN_PERSON_C
 
 #include "Person.h"
+
+#endif

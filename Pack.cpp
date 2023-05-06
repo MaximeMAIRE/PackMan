@@ -1,9 +1,5 @@
-//
-// Created by amadou on 24/02/23.
-//
-
 #include "Pack.h"
-void Pack::mouvment(int cache, Map map)
+void Pack::movement(int cache, Map map)
 {
     int x = this->pacman_pos.x;
     int y = this->pacman_pos.y;
@@ -19,25 +15,25 @@ void Pack::mouvment(int cache, Map map)
             if((map.tab[iay][iax-1] == -1) || (map.tab[iay][iax-1] == -2))	
                 ;
             else
-                this->mv = cache;
+                this->move = cache;
             break;
         case 2:
             if(map.tab[iay][iax+1] == -1 || (map.tab[iay][iax+1] == -2))
                 ;
             else
-                this->mv = cache;
+                this->move = cache;
             break;
         case 3:
             if(map.tab[iay+1][iax] == -1 || (map.tab[iay+1][iax] == -2))
                 ;
             else
-                this->mv = cache;
+                this->move = cache;
             break;
         case 4:
             if(map.tab[iay-1][iax] == -1 || (map.tab[iay-1][iax] == -2))
                 ;
             else
-                this->mv = cache;
+                this->move = cache;
             break;
         default:
             break;
@@ -45,27 +41,27 @@ void Pack::mouvment(int cache, Map map)
     }
     else
     {
-        switch(this->mv)
+        switch(this->move)
         {
             case 1:
                 if(cache == 2)
-                    this->mv = cache;
+                    this->move = cache;
                 break;
             case 2:
                 if(cache == 1)
-                    this->mv = cache;
+                    this->move = cache;
                 break;
             case 3:
                 if(cache == 4)
-                    this->mv = cache;
+                    this->move = cache;
                 break;
             case 4:
                 if(cache == 3)
-                    this->mv = cache;
+                    this->move = cache;
                 break;
         }
     }
-    switch (this->mv)
+    switch (this->move)
     {
         case 1:
             if(x%32 == 0 && y%32==0)
@@ -108,10 +104,10 @@ void Pack::mouvment(int cache, Map map)
     }
 }
 
-SDL_Rect* Pack::print_sprite(int count)
+SDL_Rect* Pack::printSprite(int count)
 {
     SDL_Rect* tpacman = nullptr;
-    switch (this->mv)
+    switch (this->move)
     {
         case 0:
             tpacman = &(this->pacman_n);

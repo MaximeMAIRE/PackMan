@@ -1,10 +1,7 @@
-//
-// Created by amadou on 24/02/23.
-//
 #include <math.h>
 #include "Ghost.h"
 
-void Ghost::mouvement(Map map)
+void Ghost::movement(Map map)
 {
     reborn(map);
 
@@ -21,11 +18,11 @@ void Ghost::mouvement(Map map)
     {
         if(this->dead == 1)
         {
-            direction_home(map);
+            directionHome(map);
         }
         else
         {
-            direction_possible(map);
+            possibleDirection(map);
             std::uniform_int_distribution<> dis(1, this->nb_tab_ok);
             int nb = dis(gen);
             int result_mv =0;
@@ -36,14 +33,14 @@ void Ghost::mouvement(Map map)
                     nb--;
                 if(nb == 0)
                 {
-                    this->mv = result_mv;
+                    this->move = result_mv;
                     break;
                 }
             }
         }
     }
 
-    switch (this->mv)
+    switch (this->move)
     {
         case 1:
             if(x%32 == 0 && y%32==0)
@@ -74,7 +71,7 @@ void Ghost::mouvement(Map map)
     }
 }
 
-SDL_Rect* Ghost::print_sprite()
+SDL_Rect* Ghost::printSprite()
 {
     SDL_Rect* tGhost = nullptr;
     if(this->fear == 1)
@@ -83,7 +80,7 @@ SDL_Rect* Ghost::print_sprite()
     }
     else if(this->dead == 1)
     {
-        switch(this->mv)
+        switch(this->move)
         {
             case 0:
                 tGhost = &(this->ghost_d_r);
@@ -104,7 +101,7 @@ SDL_Rect* Ghost::print_sprite()
     }
     else
     {
-        switch(this->mv)
+        switch(this->move)
         {
             case 0:
                 tGhost = &(this->ghost_r);
@@ -127,7 +124,7 @@ SDL_Rect* Ghost::print_sprite()
     return tGhost;
 }
 
-void Ghost::direction_possible(Map map)
+void Ghost::possibleDirection(Map map)
 {
     this->nb_tab_ok = 0;
     for(auto i=this->tab_ok.begin();i!=this->tab_ok.end();i++)
@@ -139,32 +136,32 @@ void Ghost::direction_possible(Map map)
     int iax = this->ghost.x/32;
     int iay = this->ghost.y/32;
     if (map.tab[iay][iax-1] != -1)
-        if(this->mv!=2)
+        if(this->move!=2)
         {
             this->tab_ok.at(0) = 1;
             this->nb_tab_ok++;
         }
     if (map.tab[iay][iax+1] != -1)
-        if(this->mv!=1)
+        if(this->move!=1)
         {
             this->tab_ok.at(1) = 1;
             this->nb_tab_ok++;
         }
     if (map.tab[iay+1][iax] != -1)
-        if(this->mv!=4)
+        if(this->move!=4)
         {
             this->tab_ok.at(2) = 1;
             this->nb_tab_ok++;
         }
     if (map.tab[iay-1][iax] != -1)
-        if(this->mv!=3)
+        if(this->move!=3)
         {
             this->tab_ok.at(3) = 1;
             this->nb_tab_ok++;
         }
 }
 
-void Ghost::get_target_distance(Map map)
+void Ghost::getTargetDistance(Map map)
 {
     int x = this->ghost.x;
     int y = this->ghost.y;
@@ -172,7 +169,7 @@ void Ghost::get_target_distance(Map map)
     int iay = this->ghost.y/32;
     this->nb_tab_ok = 0;
     std::vector<int> tab_temp {0, 0, 0, 0};
-    direction_possible(map);
+    possibleDirection(map);
     int j = 0;
     for (auto &i : tab_ok)
     {  
@@ -204,9 +201,9 @@ void Ghost::get_target_distance(Map map)
     }
 }
 
-void Ghost::direction_home(Map map)
+void Ghost::directionHome(Map map)
 {
-    get_target_distance(map);
+    getTargetDistance(map);
     int val_min = tab_ok.front();
     int indice_min = 0;
     int j=0;
@@ -217,11 +214,9 @@ void Ghost::direction_home(Map map)
             val_min = i;
             indice_min = j;
         }
-        std::cout << i << std::endl;
         j++;
     }
-    this->mv = indice_min+1;
-    std::cout << indice_min << std::endl;
+    this->move = indice_min+1;
 }
 
 void Ghost::reborn(Map map)

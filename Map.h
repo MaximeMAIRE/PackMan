@@ -1,7 +1,3 @@
-//
-// Created by amadou on 24/02/23.
-//
-
 #ifndef PACMAN_MAP_H
 #define PACMAN_MAP_H
 #include <SDL.h>
@@ -18,15 +14,17 @@ public:
     SDL_Window* pWindow = nullptr;
     SDL_Surface* win_surf = nullptr;
     SDL_Surface* plancheSprites = nullptr;
-
     SDL_Rect src_bg = { 201,4, 168,216 }; // x,y, w,h (0,0) en haut a gauche
     SDL_Rect src_bg2 = { 370,4, 168,216 };
     SDL_Rect src_bg3 = { 541,4, 168,216};
+
     SDL_Rect bg = { 4,4, 672,864 }; // ici scale x4
     SDL_Rect void_src = {600,300, 15,15 };
 
-    //std::vector <std::vector <int>> tab = {}; //21*27
-    //utiliser std::vector pour le tableau
+    /**
+     * @brief The matrix that represents the state of each cell in the map.
+     * 
+     */
     std::vector<std::vector<int>> tab
     {
         {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -57,17 +55,25 @@ public:
         {-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1},
         {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
     };
-    std::vector<int> home {10,11};
 
+    /**
+     * @brief Constructor for the Map class, creates a SDL window and loads the sprite sheet for PacMan and ghosts.
+     * @param none
+     * @return none
+     */
     Map()
     {
         pWindow = SDL_CreateWindow("PacMan", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 700, 900, SDL_WINDOW_SHOWN);
         win_surf = SDL_GetWindowSurface(pWindow);
-
         plancheSprites = SDL_LoadBMP("./pacman_sprites.bmp");
     }
 
-    int test_fin();
+    /**
+     * @brief Checks whether PacMan has won the game or not.
+     * @param none
+     * @return int 1 if PacMan has won, 0 if not.
+     */
+    int testVictory();
 
 };
 

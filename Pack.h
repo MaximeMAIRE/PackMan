@@ -1,17 +1,32 @@
-//
-// Created by amadou on 24/02/23.
-//
+/**
+
+@file Pack.h
+@brief Definition of the Pack class which represents the Pacman character and its movements in the game.
+*/
 
 #ifndef PACMAN_PACK_H
 #define PACMAN_PACK_H
+
 #include <SDL.h>
-
 #include <iostream>
+
 #include "Person.h"
+#include "Map.h"
 
+/**
 
+@brief The Pack class represents the Pacman character and its movements in the game.
+
+The class inherits from the Person class and contains specific Pacman sprite positions and
+
+implements Pacman's movement and sprite printing functions.
+
+*/
 class Pack : public Person {
     public:
+        /*
+        * @brief Pacman sprite positions in different directions.
+        */
         SDL_Rect pacman_n;
         SDL_Rect pacman_r;
         SDL_Rect pacman_r2;
@@ -22,9 +37,14 @@ class Pack : public Person {
         SDL_Rect pacman_u;
         SDL_Rect pacman_u2;
         SDL_Rect pacman_pos;
-
-        int mv = 0;
-
+        
+        int move = 0;
+        /**
+         * @brief Default constructor for the Pack class.
+         * 
+         * Initializes the different Pacman sprite positions and sets the initial position 
+         * of Pacman on the game board.
+         */
         Pack()
         {
             this->pacman_n = {3,89, 16,16};
@@ -38,10 +58,28 @@ class Pack : public Person {
             this->pacman_u2 = {92,93 , 16,11};
             this->pacman_pos = {320,640 , 32,32};
         }
+        /**
+         * @brief Implementation of Pacman's movement.
+         * 
+         * Moves Pacman on the game board according to the current direction and the 
+         * corresponding sprite position. Also handles Pacman's interaction with the 
+         * walls and the dots on the game board.
+         * 
+         * @param cache The cached movement input from the user.
+         * @param map The game map containing the walls and the dots.
+         */
+        void movement(int cache, Map map); 
 
-        void mouvment(int cache, Map map);
-        void mange(Map map);
-        SDL_Rect* print_sprite(int count);
+        /**
+         * @brief Implementation of Pacman's sprite printing.
+         * 
+         * Determines the appropriate sprite to print based on the current movement and 
+         * returns a pointer to the corresponding sprite position.
+         * 
+         * @param count The current frame count for the animation.
+         * @return SDL_Rect* A pointer to the sprite position to print.
+         */
+        SDL_Rect* printSprite(int count);
 };
 
 

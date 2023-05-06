@@ -1,7 +1,3 @@
-//
-// Created by amadou on 24/02/23.
-//
-
 #ifndef PACMAN_PERSON_H
 #define PACMAN_PERSON_H
 
@@ -9,7 +5,8 @@
 
 class Person {
 
+    void movement();
+    SDL_Rect* printSprite();
 };
-
 
 #endif //PACMAN_PERSON_H

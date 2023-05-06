@@ -1,9 +1,6 @@
-//
-// Created by amadou on 24/02/23.
-//
 #include "Map.h"
 
-int Map::test_fin()
+int Map::testVictory()
 {
     auto iter = this->tab.begin();
     for(; iter != this->tab.end();iter++)

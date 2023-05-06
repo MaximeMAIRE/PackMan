@@ -1,6 +1,3 @@
-//
-// Created by amadou on 24/02/23.
-//
 #include <unistd.h>
 #include "Game.h"
 
@@ -25,27 +22,27 @@ void Game::draw()
         i++;
     }
 
-    SDL_Rect* tpacman = this->pacman.print_sprite(count);
+    SDL_Rect* tpacman = this->pacman.printSprite(count);
     
-    SDL_Rect* tRedGhost = this->redGhost.print_sprite();
+    SDL_Rect* tRedGhost = this->redGhost.printSprite();
     SDL_Rect tRedGhost2 = *tRedGhost;
     if(this->redGhost.dead!=1)
         if ((count/4)%2)
             tRedGhost2.x += 17;
 
-    SDL_Rect* tbeigeGhost = this->beigeGhost.print_sprite();
+    SDL_Rect* tbeigeGhost = this->beigeGhost.printSprite();
     SDL_Rect tbeigeGhost2 = *tbeigeGhost;
     if(this->beigeGhost.dead!=1)
         if ((count/4)%2)
             tbeigeGhost2.x += 17;
 
-    SDL_Rect* tblueGhost = this->blueGhost.print_sprite();;
+    SDL_Rect* tblueGhost = this->blueGhost.printSprite();;
     SDL_Rect tblueGhost2 = *tblueGhost;
     if(this->blueGhost.dead!=1)
         if ((count/4)%2)
             tblueGhost2.x += 17;
 
-    SDL_Rect* torangeGhost = this->orangeGhost.print_sprite();;
+    SDL_Rect* torangeGhost = this->orangeGhost.printSprite();;
     SDL_Rect torangeGhost2 = *torangeGhost;
     if(this->orangeGhost.dead!=1)
         if ((count/4)%2)
@@ -91,7 +88,7 @@ void Game::passage()
 }
 
 
-void Game::draw_happy_end()
+void Game::drawHappyEnd()
 {   
     SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
     int x = this->count/20;
@@ -108,7 +105,7 @@ void Game::draw_happy_end()
     SDL_BlitScaled(this->mapGame.plancheSprites, tpacman, this->mapGame.win_surf, &(this->pacman.pacman_pos));
 }
 
-void Game::draw_sad_ending()
+void Game::drawSadEnd()
 {
     SDL_SetColorKey(this->mapGame.plancheSprites, false, 0);
     SDL_BlitScaled(this->mapGame.plancheSprites, &(this->mapGame.src_bg), this->mapGame.win_surf, &(this->mapGame.bg));
@@ -131,7 +128,7 @@ void Game::draw_sad_ending()
     return;
 }
 
-int Game::ghost_hurt()
+int Game::ghostHurt()
 {
     if( (abs(this->pacman.pacman_pos.x - this->beigeGhost.ghost.x) < 30) && (abs(this->pacman.pacman_pos.y - this->beigeGhost.ghost.y) < 30) )
     {
