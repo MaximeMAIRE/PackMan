@@ -41,6 +41,7 @@ class Pack : public Person {
 
         void mouvment(int cache, Map map);
         void mange(Map map);
+        SDL_Rect* print_sprite(int count);
 };
 
 

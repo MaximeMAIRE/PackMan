@@ -23,6 +23,8 @@ public:
     Ghost orangeGhost;
     Pack pacman;
     int count=0;
+    int superPacman = 0;
+    int countSuperPacman = 0;
 
     Game()
     {

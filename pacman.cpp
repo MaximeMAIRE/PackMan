@@ -14,8 +14,8 @@ int main(int argc, char** argv)
     }
 	int deplace = 0;
 	int cache = 0;
-	Game packManGame;
-    packManGame=Game{};
+	Game pacmanGame;
+    pacmanGame=Game{};
     // BOUCLE PRINCIPALE
 	bool quit = false;
 	bool happy_end = 0;
@@ -61,50 +61,68 @@ int main(int argc, char** argv)
 			puts("UP");
 			cache = 4;
 		}
-		packManGame.passage();
+		pacmanGame.passage();
 
-		packManGame.pacman.mouvment(cache, packManGame.mapGame);
-		packManGame.redGhost.mouvement(packManGame.mapGame);
-		packManGame.beigeGhost.mouvement(packManGame.mapGame);
-		packManGame.blueGhost.mouvement(packManGame.mapGame);
-		packManGame.orangeGhost.mouvement(packManGame.mapGame);
+		pacmanGame.pacman.mouvment(cache, pacmanGame.mapGame);
+		pacmanGame.redGhost.mouvement(pacmanGame.mapGame);
+		pacmanGame.beigeGhost.mouvement(pacmanGame.mapGame);
+		pacmanGame.blueGhost.mouvement(pacmanGame.mapGame);
+		pacmanGame.orangeGhost.mouvement(pacmanGame.mapGame);
 
-		packManGame.draw();
-		packManGame.count++;
+		pacmanGame.draw();
+		pacmanGame.count++;
 
 		//else sad_ending
-		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
+		SDL_UpdateWindowSurface(pacmanGame.mapGame.pWindow);
         // LIMITE A 60 FPS
 		SDL_Delay(16); // utiliser SDL_GetTicks64() pour plus de precisions
 
-		if(packManGame.ghost_hurt()== 1)
+		int ghost_hurt = pacmanGame.ghost_hurt();
+		if(ghost_hurt != 0)
 		{
-			std::cout << "Lose" << std::endl;
-			sad_ending = true;
-			break;
+			if(pacmanGame.superPacman != 1)
+			{
+				std::cout << "Lose" << std::endl;
+				sad_ending = true;
+				break;
+			}
+			else
+			{
+				std::cout << "MIAM c'est " << ghost_hurt << "qui est dead" << std::endl;
+			}
 		}
-		if (packManGame.mapGame.test_fin()==1)
+		pacmanGame.countSuperPacman--;
+		if (pacmanGame.countSuperPacman == 0)
+		{
+			pacmanGame.superPacman = 0;
+			pacmanGame.beigeGhost.fear = 0;
+			pacmanGame.redGhost.fear = 0;
+			pacmanGame.blueGhost.fear = 0;
+			pacmanGame.orangeGhost.fear = 0;
+		}
+
+		if (pacmanGame.mapGame.test_fin()==1)
 		{
 			std::cout << "Win" << std::endl;
 			happy_end = true;
 			quit = true;
 		}
 	}
-	packManGame.count = 0;
+	pacmanGame.count = 0;
 	while(happy_end)
 	{
-		packManGame.draw_happy_end();
-		SDL_UpdateWindowSurface(packManGame.mapGame.pWindow);
+		pacmanGame.draw_happy_end();
+		SDL_UpdateWindowSurface(pacmanGame.mapGame.pWindow);
 		SDL_Delay(16);
-		packManGame.count++;
-		if (packManGame.count == 180)
+		pacmanGame.count++;
+		if (pacmanGame.count == 180)
 		{
 			happy_end = false;
 		}
 	}
 	while(sad_ending)
 	{
-		packManGame.draw_sad_ending();
+		pacmanGame.draw_sad_ending();
 		sad_ending = 0;
 	}
     SDL_Quit(); // ON SORT
